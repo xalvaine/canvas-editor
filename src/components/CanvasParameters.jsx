@@ -12,7 +12,7 @@ function CanvasParameters(props) {
     const drawImage = (source) => {
         const canvasImage = new Image();
         canvasImage.onload = () => {
-            context.clearRect(0, 0, 1024, 768);
+            context.clearRect(0, 0, 2048, 1536);
             context.drawImage(canvasImage, 0, 0);
         };
         canvasImage.setAttribute(`src`, source);
@@ -20,7 +20,7 @@ function CanvasParameters(props) {
 
     const handleUndo = () => {
         const tmp = stepsBefore.slice(0, -1);
-        if (tmp.length === 0) context.clearRect(0, 0, 1024, 768);
+        if (tmp.length === 0) context.clearRect(0, 0, 2048, 1536);
         if (stepsBefore.length === 0) return;
         drawImage(tmp[tmp.length - 1]);
         setStepsAfter([...stepsAfter, stepsBefore[stepsBefore.length - 1]]);
@@ -36,7 +36,7 @@ function CanvasParameters(props) {
 
     const handleReset = () => {
         setStepsAfter([...stepsAfter, stepsBefore[-1]]);
-        context.clearRect(0, 0, 1024, 768);
+        context.clearRect(0, 0, 2048, 1536);
         setStepsBefore([]);
         setStepsAfter([]);
     };

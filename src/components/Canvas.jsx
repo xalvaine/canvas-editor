@@ -19,8 +19,8 @@ class Canvas extends Component {
             const canvas = evt.target;
             this.setState({
                 brushPosition: {
-                    x: evt.pageX - canvas.offsetParent.offsetLeft,
-                    y: evt.pageY - canvas.offsetParent.offsetTop,
+                    x: (evt.pageX - canvas.offsetParent.offsetLeft) * evt.target.width / evt.target.offsetWidth,
+                    y: (evt.pageY - canvas.offsetParent.offsetTop) * evt.target.height / evt.target.offsetHeight,
                 },
                 context: evt.target.getContext(`2d`),
             });
@@ -42,11 +42,14 @@ class Canvas extends Component {
             moveBrush(evt);
             context.beginPath();
             context.moveTo(brushPosition.x, brushPosition.y);
+            context.imageSmoothingEnabled = true;
+            context.lineCap = `round`;
+            context.imageSmoothingQuality = `low`;
             if (mode === `drawing`) {
-                context.lineWidth = 5;
+                context.lineWidth = 20;
                 context.strokeStyle = color;
             } else {
-                context.lineWidth = 30;
+                context.lineWidth = 120;
                 context.strokeStyle = `white`;
             }
             this.setState({stepsAfter: []});
@@ -87,8 +90,8 @@ class Canvas extends Component {
             />
             <canvas
                 className="canvas__canvas"
-                width="1024"
-                height="768"
+                width="2048"
+                height="1536"
                 onMouseDown={this.handleMouseDown}
                 onMouseMove={this.handleMouseMove}
             />
