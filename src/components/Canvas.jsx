@@ -11,7 +11,7 @@ class Canvas extends Component {
             context: undefined,
             color: `black`,
             mode: `drawing`,
-            stepsBefore: [``],
+            stepsBefore: [],
             stepsAfter: [],
         };
 

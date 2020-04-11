@@ -9,26 +9,27 @@ function CanvasParameters(props) {
         stepsAfter, setStepsAfter
     } = props;
 
-    const handleUndo = () => {
-        const tmp = stepsBefore.slice(0, -1);
-        if (tmp.length === 1) handleReset();
+    const drawImage = (source) => {
         const canvasImage = new Image();
         canvasImage.onload = () => {
             context.clearRect(0, 0, 1024, 768);
             context.drawImage(canvasImage, 0, 0);
         };
-        canvasImage.setAttribute(`src`, tmp[tmp.length - 1]);
+        canvasImage.setAttribute(`src`, source);
+    };
+
+    const handleUndo = () => {
+        const tmp = stepsBefore.slice(0, -1);
+        if (tmp.length === 0) context.clearRect(0, 0, 1024, 768);
+        if (stepsBefore.length === 0) return;
+        drawImage(tmp[tmp.length - 1]);
         setStepsAfter([...stepsAfter, stepsBefore[stepsBefore.length - 1]]);
         setStepsBefore(tmp);
     };
 
     const handleRedo = () => {
-        const canvasImage = new Image();
-        canvasImage.onload = () => {
-            context.clearRect(0, 0, 1024, 768);
-            context.drawImage(canvasImage, 0, 0);
-        };
-        canvasImage.setAttribute(`src`, stepsAfter[stepsAfter.length - 1]);
+        if (stepsAfter.length === 0) return;
+        drawImage(stepsAfter[stepsAfter.length - 1]);
         setStepsBefore([...stepsBefore, stepsAfter[stepsAfter.length - 1]]);
         setStepsAfter(stepsAfter.slice(0, -1));
     };
@@ -36,7 +37,7 @@ function CanvasParameters(props) {
     const handleReset = () => {
         setStepsAfter([...stepsAfter, stepsBefore[-1]]);
         context.clearRect(0, 0, 1024, 768);
-        setStepsBefore([``]);
+        setStepsBefore([]);
         setStepsAfter([]);
     };
 
