@@ -8,6 +8,7 @@ function CanvasParameters(props) {
         stepsBefore, setStepsBefore,
         stepsAfter, setStepsAfter
     } = props;
+
     const handleUndo = () => {
         const tmp = stepsBefore.slice(0, -1);
         if (tmp.length === 1) handleReset();
