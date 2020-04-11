@@ -41,13 +41,13 @@ function CanvasParameters(props) {
 
     return <div className="canvas__parameters">
         <button
-            className={mode === `drawing` && `active`}
+            className={mode === `drawing` ? `active` : null}
             onClick={() => setMode(`drawing`)}
         >
             Draw
         </button>
         <button
-            className={mode === `erasing` && `active`}
+            className={mode === `erasing` ? `active` : null}
             onClick={() => setMode(`erasing`)}
         >
             Erase

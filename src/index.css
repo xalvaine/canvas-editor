@@ -6,6 +6,7 @@
 body {
     height: 100vh;
     display: flex;
+    overflow: auto;
 }
 
 #root {
@@ -15,6 +16,7 @@ body {
 
 .canvas {
     position: relative;
+    width: 1024px;
 }
 
 .canvas__parameters {
@@ -27,14 +29,14 @@ body {
     grid-gap: 10px;
     border-radius: 10px;
     background: white;
-    box-shadow: 0 0 10px #00000033;
+    box-shadow: 0 0 10px #ddddff;
     user-select: none;
 }
 
 .canvas__canvas {
     width: 100%;
     height: auto;
-    box-shadow: 0 0 10px #00000033;
+    box-shadow: 0 0 10px #ddddff;
     box-sizing: border-box;
     display: block;
     border-radius: 10px;
@@ -67,5 +69,5 @@ button:active, label:active {
 }
 
 .active {
-    background: #eeeeff;
+    color: #9900FF;
 }
