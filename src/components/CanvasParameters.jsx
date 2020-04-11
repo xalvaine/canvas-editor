@@ -1,7 +1,13 @@
 import React from "react";
 
-function CanvasParameters({setMode, context, setColor, stepsBefore, setStepsBefore, stepsAfter, setStepsAfter}) {
-
+function CanvasParameters(props) {
+    const {
+        mode, setMode,
+        context,
+        setColor,
+        stepsBefore, setStepsBefore,
+        stepsAfter, setStepsAfter
+    } = props;
     const handleUndo = () => {
         const tmp = stepsBefore.slice(0, -1);
         if (tmp.length === 1) handleReset();
@@ -34,8 +40,18 @@ function CanvasParameters({setMode, context, setColor, stepsBefore, setStepsBefo
     };
 
     return <div className="canvas__parameters">
-        <button onClick={() => setMode(`drawing`)}>Draw</button>
-        <button onClick={() => setMode(`erasing`)}>Erase</button>
+        <button
+            className={mode === `drawing` && `active`}
+            onClick={() => setMode(`drawing`)}
+        >
+            Draw
+        </button>
+        <button
+            className={mode === `erasing` && `active`}
+            onClick={() => setMode(`erasing`)}
+        >
+            Erase
+        </button>
         <button onClick={handleUndo}>Undo</button>
         <button onClick={handleRedo}>Redo</button>
         <button onClick={handleReset}>Reset</button>

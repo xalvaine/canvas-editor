@@ -56,6 +56,7 @@ function Canvas() {
         <CanvasParameters
             context={context}
             setColor={setColor}
+            mode={mode}
             setMode={setMode}
             stepsBefore={stepsBefore}
             setStepsBefore={setStepsBefore}
