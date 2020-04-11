@@ -18,13 +18,17 @@ body {
 }
 
 .canvas__parameters {
+    left: 20px;
+    top: 20px;
     position: absolute;
-    padding: 20px;
+    padding: 15px;
     display: grid;
     grid-auto-flow: column;
     grid-gap: 20px;
-    background: #FFCC99;
-    border-radius: 10px 0 10px 0;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 0 10px #00000033;
+    user-select: none;
 }
 
 .canvas__canvas {
@@ -37,19 +41,16 @@ body {
 }
 
 input[type="color"] {
-    background: none;
-    background: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    display: block;
+    display: none;
 }
 
-button {
+button, label {
+    outline: none;
+    color: #007AFF;
     background: white;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Roboto', sans-serif;
 }

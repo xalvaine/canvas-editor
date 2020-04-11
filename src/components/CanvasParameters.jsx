@@ -42,7 +42,9 @@ function CanvasParameters({setMode, context, setColor, stepsBefore, setStepsBefo
         <input
             type="color"
             onChange={(evt) => setColor(evt.target.value)}
+            id="color"
         />
+        <label htmlFor="color">Color</label>
     </div>
 }
 

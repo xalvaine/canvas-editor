@@ -32,7 +32,9 @@ function Canvas() {
             context.strokeStyle = `white`;
         }
         setStepsAfter([]);
-        window.addEventListener(`mouseup`, handleMouseUp);
+        const canvas = evt.target;
+        const triggerHandleMouseUp = () => handleMouseUp(canvas, triggerHandleMouseUp);
+        window.addEventListener(`mouseup`, triggerHandleMouseUp);
     };
 
     const handleMouseMove = (evt) => {
@@ -43,11 +45,11 @@ function Canvas() {
         }
     };
 
-    const handleMouseUp = (evt) => {
+    const handleMouseUp = (canvas, triggerHandleMouseUp) => {
         setDrawing(false);
         context.closePath();
-        setStepsBefore([...stepsBefore, evt.target.toDataURL()]);
-        window.removeEventListener(`mouseup`, handleMouseUp);
+        setStepsBefore([...stepsBefore, canvas.toDataURL()]);
+        window.removeEventListener(`mouseup`, triggerHandleMouseUp);
     };
 
     return <div className="canvas">
